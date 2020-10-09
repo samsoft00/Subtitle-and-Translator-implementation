@@ -1,21 +1,6 @@
 # Lengoo Coding challenge
 
-## Task
-
-1. Clone this repo.
-2. Create a new development branch.
-3. Use as many commits as you can so we can see your progress.
-4. After finishing your work, create a Pull Request to the master branch.
-5. Be ready to answer question.
-
-## Requirements
-
-- The task must be developed in NodeJS.
-- Write tests where applicable/necessary.
-- All code as well as documentation or comments must be in english.
-- Provide instructions on how to run the project.
-
-## Business description
+## Description
 
 A Subtitles Translator is a service that translates subtitles, it takes one or several subtitle files as input and produces the subtitles in the same format containing the translations of each one of the contained sentences. The translation is performed by using historical data stored in a [Translation Management System (TMS)](https://en.wikipedia.org/wiki/Translation_management_system). One translation is performed by going through the following steps:
 
@@ -75,11 +60,7 @@ In order to import data, it uses the following structure:
 ]
 ```
 
-## Task
-
-Your task is:
+## Tasks
 
 1. Create a REST API for uploading subtitles in a plain text format (.txt) and send an email with the translation as attachment once the process done.
 2. Create the TMS either inside or outside the document translator (however you feel is the best way) with the two endpoints stated before.
-
-Feel free to define yourself the API contracts and the project structure.
