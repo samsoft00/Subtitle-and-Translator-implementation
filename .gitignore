@@ -43,3 +43,4 @@ build/
 .vscode
 src/database/tms.sqlite
 challenge-note.md
+refactor.md

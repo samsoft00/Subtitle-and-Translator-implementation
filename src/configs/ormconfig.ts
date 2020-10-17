@@ -1,17 +1,28 @@
 import * as path from 'path';
 import config from 'config';
 
-const { type } = config.get('database');
+const { type, host, port, username, password, name } = config.get('database');
 
 const srcPath = (...segments: string[]) => path.join(__dirname, '../database', ...segments);
 
 const conneection = {
   name: 'default',
   type,
-  database: srcPath('tms.sqlite'),
+  host,
+  port,
+  username,
+  password,
+  database: name,
   entities: [srcPath('entity', '*{.ts,.js}')],
-  synchronize: true,
+  migrations: [srcPath('migration', '*{.ts,.js}')],
+  subscribers: [srcPath('subscriber', '*{.ts,.js}')],
   migrationsTableName: '_migrations',
+  synchronize: true,
+  // logging: true,
+  cli: {
+    migrationsDir: srcPath('migration'),
+  },
+  keepConnectionAlive: true,
 };
 
 if (module) {
