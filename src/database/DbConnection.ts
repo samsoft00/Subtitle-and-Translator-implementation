@@ -5,8 +5,7 @@ import config from 'config';
 const { type } = config.get('database');
 
 try {
-  const connection = async () => createConnection(require('../configs/ormconfig'));
-  connection();
+  (async () => createConnection(require('../configs/ormconfig')))();
 
   log(`${type.toUpperCase()} Database Connected`);
 } catch (error) {

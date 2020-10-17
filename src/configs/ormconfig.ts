@@ -5,7 +5,7 @@ const { type, host, port, username, password, name } = config.get('database');
 
 const srcPath = (...segments: string[]) => path.join(__dirname, '../database', ...segments);
 
-const conneection = {
+const connection = {
   name: 'default',
   type,
   host,
@@ -26,7 +26,7 @@ const conneection = {
 };
 
 if (module) {
-  module.exports = conneection;
+  module.exports = connection;
 }
 
-export default conneection;
+export default connection;
