@@ -9,7 +9,11 @@ module.exports = {
     maxUploadFileSize: process.env.TMS_MAX_UPLOAD_SIZE || 10 * 1024 * 1024, // 100MB,
   },
   database: {
-    type: process.env.TMS_DB_TYPE || 'sqlite',
+    type: process.env.TMS_DB_TYPE || 'postgres',
+    host: process.env.TMS_DB_HOST,
+    port: process.env.TMS_DB_PORT,
+    username: process.env.TMS_DB_USERNAME,
+    password: process.env.TMS_DB_PASSWORD,
     name: process.env.TMS_DB_NAME,
   },
   mail: {
