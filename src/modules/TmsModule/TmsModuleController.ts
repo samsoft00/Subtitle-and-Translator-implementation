@@ -1,4 +1,5 @@
 import { pick } from 'lodash';
+import camelCase from 'camelcase-keys';
 import { Request, Response, NextFunction } from 'express';
 
 import { getTranslatorRepository } from '../../database/repository';
@@ -47,7 +48,7 @@ export default class TmsController {
       await validateIntroReq().validateAsync(payload);
 
       const transRepo = getTranslatorRepository();
-      const intros = transRepo.create(payload);
+      const intros = transRepo.create(camelCase(payload));
 
       await transRepo.save(intros);
 
