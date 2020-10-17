@@ -10,7 +10,7 @@ export default class TranslatorRepository extends Repository<Translation> {
   async fuzzyStrMatch(searchStr: string, source: string, target: string): Promise<Translation> {
     const trnslator = await this.createQueryBuilder('translations')
       .where(
-        '(levenshtein(:searchStr, name) < 5) and source_language = :source and targe_lLanguage = :target',
+        '(levenshtein(:searchStr, name) < 5) and source_language = :source and targe_language = :target',
         { searchStr, source, target }
       )
       .getOne();
