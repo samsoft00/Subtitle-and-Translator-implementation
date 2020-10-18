@@ -41,41 +41,6 @@ export default class TmsTranslator {
     } catch (error) {
       return searchQry;
     }
-
-    // const translations = await trnslRepo.find({
-    //   where: { sourceLanguage: opts.from, targetLanguage: opts.to },
-    // });
-
-    // const options: Fuse.IFuseOptions<any> = {
-    //   shouldSort: true,
-    //   threshold: 0.0,
-    //   keys: [{ name: 'source', weight: 0.1 }],
-    // };
-
-    /**
-     * search for strings that are **approximately** equal in the database —
-     * They might not be the same but close enough to be consider a translation.
-     */
-    // const fuse = new Fuse(translations, options);
-
-    // const response: Array<Fuse.FuseResult<Translation>> = fuse.search(searchQry);
-    // if (!response.length && !response[0]) return searchQry;
-
-    /**
-     * It calculates the distance between the query and the closest string found. —
-     * A standard way of calculating strings distance is by using
-     * Levenshtein distance algorithm
-     */
-    // const { source, target } = response[0].item;
-    // const distance: number = this.levenshteinDistance(searchQry, source);
-
-    /**
-     * If the distance is less than 5, is considered a translation,
-     * otherwise the same query is returned as result
-     */
-
-    // if (distance < 5) return target;
-    // return searchQry;
   }
 
   /**
