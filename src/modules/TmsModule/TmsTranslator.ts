@@ -2,14 +2,9 @@ import { getTranslatorRepository, getLangRepo } from '../../database/repository'
 import CustomError from '../../Utils/CustomError';
 
 export default class TmsTranslator {
-  private source: string;
-  private target: string;
   private langs: { [key: string]: string };
 
-  constructor(source = 'auto', target: string) {
-    this.source = source;
-    this.target = target;
-  }
+  constructor(private source = 'auto', private target: string) {}
 
   async translate(searchQry: string): Promise<string> {
     const opts = { from: this.source || 'en', to: this.target };
