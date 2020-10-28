@@ -1,36 +1,23 @@
-import Fuse from 'fuse.js';
-import Translation from '../../database/entity/Translation';
-import { getTranslatorRepository } from '../../database/repository';
+import { getTranslatorRepository, getLangRepo } from '../../database/repository';
+import CustomError from '../../Utils/CustomError';
 
 export default class TmsTranslator {
   private source: string;
   private target: string;
-  private langs: any;
+  private langs: { [key: string]: string };
 
   constructor(source = 'auto', target: string) {
     this.source = source;
     this.target = target;
-    this.langs = {
-      auto: 'Automatic',
-      lv: 'Latvian',
-      lt: 'Lithuanian',
-      lb: 'Luxembourgish',
-      mk: 'Macedonian',
-      mg: 'Malagasy',
-      ms: 'Malay',
-      mt: 'Maltese',
-      mi: 'Maori',
-      mr: 'Marathi',
-      en: 'English',
-      de: 'German',
-    };
   }
 
   async translate(searchQry: string): Promise<string> {
     const opts = { from: this.source || 'en', to: this.target };
+    this.langs = await getLangRepo().fetchLangs();
 
     [opts.from, opts.to].forEach((lang) => {
-      if (lang && !this.isSupported(lang)) throw new Error(`The language ${lang} is not supported`);
+      if (lang && !this.isSupported(lang))
+        throw new CustomError(404, `The language ${lang} is not supported`);
     });
 
     try {
@@ -39,7 +26,8 @@ export default class TmsTranslator {
 
       return translations.target;
     } catch (error) {
-      return searchQry;
+      if (error instanceof CustomError) throw new Error(error.message);
+      return Promise.resolve(searchQry);
     }
   }
 

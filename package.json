@@ -6,6 +6,7 @@
   "scripts": {
     "start": "npm run build && cross-env NODE_CONFIG_DIR=./build/configs node build/server.js",
     "start:dev": "cross-env NODE_CONFIG_DIR=./src/configs nodemon",
+    "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
     "build": "rimraf ./build && npx tsc"
   },
   "repository": {
